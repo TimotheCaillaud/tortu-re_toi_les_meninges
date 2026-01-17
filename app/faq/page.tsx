@@ -2,42 +2,9 @@
 
 import React, { useState } from "react";
 import { FAQItem } from "@/components/faq/FAQItem";
+import { FAQS } from "@/lib/constants";
 
 export default function FAQPage() {
-  const faqs = [
-    {
-      question: "Comment fonctionne un escape game à domicile ?",
-      answer:
-        "Nous livrons tout le matériel nécessaire chez vous. Vous recevez une boîte contenant les énigmes, les indices et le scénario. Suivez les instructions et lancez-vous dans l'aventure !",
-    },
-    {
-      question: "Combien de temps dure une session ?",
-      answer:
-        "Nos aventures durent entre 90 et 120 minutes selon le scénario choisi. Vous pouvez prendre votre temps, il n'y a pas de limite stricte.",
-    },
-    {
-      question: "Combien de joueurs peuvent participer ?",
-      answer:
-        "Selon le scénario, de 2 à 8 joueurs peuvent participer. Nous indiquons le nombre recommandé pour chaque aventure.",
-    },
-    {
-      question: "Dois-je retourner le matériel ?",
-      answer:
-        "Oui, une enveloppe prépayée est fournie. Vous avez 48h après votre session pour renvoyer le matériel gratuitement.",
-    },
-    {
-      question: "Y a-t-il un maître du jeu ?",
-      answer:
-        "Non, l'expérience est autonome. Tout est fourni pour que vous puissiez jouer sans assistance. Des indices sont disponibles si vous êtes bloqués.",
-    },
-    {
-      question:
-        "Peut-on commander pour un événement (anniversaire, EVG/EVJF) ?",
-      answer:
-        "Absolument ! Nous proposons des packs spéciaux pour les événements. Contactez-nous pour personnaliser votre expérience.",
-    },
-  ];
-
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
@@ -47,7 +14,7 @@ export default function FAQPage() {
           Questions Fréquentes
         </h2>
         <div className="space-y-4">
-          {faqs.map((faq, index) => (
+          {FAQS.map((faq, index) => (
             <FAQItem
               key={index}
               question={faq.question}

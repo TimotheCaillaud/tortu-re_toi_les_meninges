@@ -1,3 +1,4 @@
+import { NAV_ITEMS } from "@/lib/constants";
 import React from "react";
 
 export const Footer: React.FC = () => {
@@ -16,30 +17,18 @@ export const Footer: React.FC = () => {
           <div>
             <h4 className="font-bold text-[#fffcf6] mb-4">Navigation</h4>
             <ul className="space-y-2 text-sm">
-              <li>
-                <a
-                  href="#home"
-                  className="hover:text-[#fffcf6] transition-colors"
-                >
-                  Accueil
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#contact"
-                  className="hover:text-[#fffcf6] transition-colors"
-                >
-                  Contact
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#faq"
-                  className="hover:text-[#fffcf6] transition-colors"
-                >
-                  FAQ
-                </a>
-              </li>
+              {NAV_ITEMS.map((item) => {
+                return (
+                  <li key={item.name}>
+                    <a
+                      href={item.href}
+                      className="hover:text-[#fffcf6] transition-colors"
+                    >
+                      <span>{item.name}</span>
+                    </a>
+                  </li>
+                );
+              })}
             </ul>
           </div>
           <div>

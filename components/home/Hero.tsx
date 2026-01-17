@@ -1,5 +1,5 @@
 import React from "react";
-import { Button } from "@/components/ui/Button";
+import { ButtonLink } from "../ui/ButtonLink";
 
 export const Hero: React.FC = () => {
   return (
@@ -12,7 +12,10 @@ export const Hero: React.FC = () => {
           Des escape games immersifs livrés à domicile pour des moments
           inoubliables
         </p>
-        <Button>Réserver maintenant</Button>
+        <div className="flex gap-8 justify-center">
+          <ButtonLink href="/escapes">Voir nos aventures</ButtonLink>
+          <ButtonLink href="/contact">Réserver maintenant</ButtonLink>
+        </div>
       </div>
     </section>
   );

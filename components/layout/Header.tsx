@@ -1,22 +1,11 @@
 "use client";
 
 import React, { useState } from "react";
-import { Menu, X, Home, Mail, HelpCircle } from "lucide-react";
-
-interface NavItem {
-  name: string;
-  href: string;
-  icon: React.ElementType;
-}
+import { Menu, X } from "lucide-react";
+import { NAV_ITEMS } from "@/lib/constants";
 
 export const Header: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-
-  const navItems: NavItem[] = [
-    { name: "Accueil", href: "#home", icon: Home },
-    { name: "Contact", href: "#contact", icon: Mail },
-    { name: "FAQ", href: "#faq", icon: HelpCircle },
-  ];
 
   return (
     <header className="bg-[#3f1f03] text-[#fffcf6] sticky top-0 z-50 shadow-lg">
@@ -38,7 +27,7 @@ export const Header: React.FC = () => {
       <nav className="max-w-6xl mx-auto px-4">
         {/* Desktop Navigation */}
         <div className="hidden md:flex justify-center space-x-8 py-4">
-          {navItems.map((item) => {
+          {NAV_ITEMS.map((item) => {
             const Icon = item.icon;
             return (
               <a
@@ -68,7 +57,7 @@ export const Header: React.FC = () => {
         {/* Mobile Menu Dropdown */}
         {isMenuOpen && (
           <div className="md:hidden bg-[#041f1e] py-4 space-y-3 rounded-b-lg">
-            {navItems.map((item) => {
+            {NAV_ITEMS.map((item) => {
               const Icon = item.icon;
               return (
                 <a

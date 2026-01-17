@@ -1,3 +1,5 @@
+import { Home, Mail, HelpCircle, Brain, Settings } from "lucide-react";
+
 export const SITE_CONFIG = {
   name: "Tortu&apos;re toi les méninges",
   description: "L'aventure à domicile",
@@ -13,46 +15,44 @@ export const SITE_CONFIG = {
   },
 };
 
-export const NAV_ITEMS = [
-  { name: "Accueil", href: "/" },
-  { name: "Aventures", href: "/aventures" },
-  { name: "Contact", href: "/contact" },
-  { name: "FAQ", href: "/faq" },
+interface NavItem {
+  name: string;
+  href: string;
+  icon: React.ElementType;
+}
+
+export const NAV_ITEMS: NavItem[] = [
+  { name: "Accueil", href: "/", icon: Home },
+  { name: "Nos Escapes", href: "/escapes", icon: Brain },
+  { name: "Contact", href: "contact", icon: Mail },
+  { name: "Projets Spéciaux", href: "/special-project", icon: Settings },
+  { name: "FAQ", href: "faq", icon: HelpCircle },
 ];
 
-export const ADVENTURES = [
+export const ESCAPES = [
   {
     id: 1,
-    title: "Le Mystère du Manoir",
+    title: "Une enquête à haute Altitude",
     description:
-      "Un héritage mystérieux vous attend. Résolvez les énigmes avant minuit...",
-    players: "2-6 joueurs",
-    duration: "90 min",
+      "Missionné·es par le J.I.A., journal international d'Alpinisme, vous devez vous prononcer sur le sort de l'Everest. L'honneur d'un pays est en jeu. ",
+    players: "4-6 joueurs",
+    duration: "60 min",
     difficulty: "Intermédiaire",
+    age: "10+",
     price: 49.99,
-    image: "/adventures/manoir.jpg",
+    image: "/image_1.png",
   },
   {
     id: 2,
-    title: "L'Île au Trésor",
+    title: "Les pierres de Lune",
     description:
-      "Pirates, cartes au trésor et aventure ! Trouvez le butin caché...",
-    players: "2-6 joueurs",
-    duration: "90 min",
+      "USA début des années 1920. \nUn des barons de la contrebande m'a volé des pierres de Lune. Armé de votre courage, vous pénétrerez dans son bureau, afin de retrouver mes précieuses gemmes. Attention à vous si vous n'êtes pas suffisamment rapide.",
+    players: "4-6 joueurs",
+    duration: "60 min",
     difficulty: "Facile",
+    age: "10+",
     price: 44.99,
     image: "/adventures/tresor.jpg",
-  },
-  {
-    id: 3,
-    title: "Mission Spatiale",
-    description:
-      "Votre vaisseau est en danger. Réparez-le avant qu'il ne soit trop tard...",
-    players: "3-8 joueurs",
-    duration: "120 min",
-    difficulty: "Difficile",
-    price: 59.99,
-    image: "/adventures/spatial.jpg",
   },
 ];
 
@@ -65,12 +65,12 @@ export const FAQS = [
   {
     question: "Combien de temps dure une session ?",
     answer:
-      "Nos aventures durent entre 90 et 120 minutes selon le scénario choisi. Vous pouvez prendre votre temps, il n'y a pas de limite stricte.",
+      "Nos aventures durent autour d'une heure de jeu. Vous pouvez prendre votre temps, il n'y a pas de limite stricte.",
   },
   {
     question: "Combien de joueurs peuvent participer ?",
     answer:
-      "Selon le scénario, de 2 à 8 joueurs peuvent participer. Nous indiquons le nombre recommandé pour chaque aventure.",
+      "Selon le scénario, de 2 à 6 joueurs peuvent participer. Nous indiquons le nombre recommandé pour chaque aventure.",
   },
   {
     question: "Dois-je retourner le matériel ?",

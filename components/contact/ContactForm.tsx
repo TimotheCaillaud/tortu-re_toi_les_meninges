@@ -63,9 +63,9 @@ export const ContactForm: React.FC = () => {
           className="w-full px-4 py-2 border-2 border-[#733706] rounded focus:outline-none focus:border-[#3f1f03]"
           required
         ></textarea>
-        {/* <Button variant="secondary" onClick={handleSubmit} className="w-full">
+        <Button variant="secondary" onClick={handleSubmit} className="w-full">
           Envoyer
-        </Button> */}
+        </Button>
       </div>
     </Card>
   );
