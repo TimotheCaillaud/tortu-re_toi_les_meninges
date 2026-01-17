@@ -1,36 +1,98 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Tortu're toi les méninges - Site Web
 
-## Getting Started
+Site web pour la réservation d'escape games à domicile.
 
-First, run the development server:
+## 🚀 Démarrage
+
+### Prérequis
+
+- Node.js 18+
+- npm ou yarn
+
+### Installation
 
 ```bash
+# Cloner le projet
+git clone [votre-repo]
+cd escape-game-site
+
+# Installer les dépendances
+npm install
+
+# Copier le fichier d'environnement
+cp .env.local.example .env.local
+
+# Lancer le serveur de développement
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Ouvrez [http://localhost:3000](http://localhost:3000) dans votre navigateur.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 📁 Structure du projet
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```
+escape-game-site/
+├── app/                    # Pages Next.js (App Router)
+│   ├── layout.tsx         # Layout principal
+│   ├── page.tsx           # Homepage
+│   ├── contact/           # Page contact
+│   └── faq/               # Page FAQ
+├── components/            # Composants React
+│   ├── layout/           # Header, Footer, Navigation
+│   ├── ui/               # Composants réutilisables
+│   ├── home/             # Composants homepage
+│   ├── contact/          # Composants contact
+│   └── faq/              # Composants FAQ
+├── lib/                   # Utilitaires et helpers
+├── public/               # Assets statiques
+└── styles/               # Styles globaux
+```
 
-## Learn More
+## 🎨 Charte graphique
 
-To learn more about Next.js, take a look at the following resources:
+- **Marron principal**: `#733706`
+- **Marron foncé**: `#3f1f03`
+- **Beige**: `#f7dba7`
+- **Crème**: `#fffcf6`
+- **Bleu-vert**: `#041f1e`
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🧪 Tests
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```bash
+# Lancer les tests
+npm run test
 
-## Deploy on Vercel
+# Lancer les tests en mode watch
+npm run test:watch
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 🚢 Déploiement
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Vercel (recommandé)
+
+```bash
+# Installer Vercel CLI
+npm i -g vercel
+
+# Déployer
+vercel
+```
+
+### Build manuel
+
+```bash
+npm run build
+npm run start
+```
+
+## 📝 Fonctionnalités à venir
+
+- [ ] Système de réservation avec calendrier
+- [ ] Intégration Stripe pour les paiements
+- [ ] Espace client
+- [ ] Blog/Actualités
+- [ ] Système de reviews
+
+## 🤝 Contribution
+
+Les contributions sont les bienvenues ! N'hésitez pas à ouvrir une issue ou une pull request.

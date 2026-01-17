@@ -1,26 +1,116 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --brand-brown: #733706;
+  --brand-brown-dark: #3f1f03;
+  --brand-beige: #f7dba7;
+  --brand-cream: #fffcf6;
+  --brand-teal: #041f1e;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+@layer base {
+  body {
+    @apply bg-[var(--brand-cream)] text-[var(--brand-teal)];
+    font-feature-settings:
+      "rlig" 1,
+      "calt" 1;
+  }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-bold;
+  }
+
+  /* Smooth scroll */
+  html {
+    scroll-behavior: smooth;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer components {
+  /* Boutons personnalisés */
+  .btn {
+    @apply px-6 py-3 rounded-lg font-semibold transition-all duration-300 shadow-md hover:shadow-lg;
+  }
+
+  .btn-primary {
+    @apply bg-[var(--brand-beige)] text-[var(--brand-brown-dark)] hover:bg-[var(--brand-cream)];
+  }
+
+  .btn-secondary {
+    @apply bg-[var(--brand-brown)] text-[var(--brand-cream)] hover:bg-[var(--brand-brown-dark)];
+  }
+
+  /* Cards */
+  .card {
+    @apply bg-[var(--brand-cream)] border-2 border-[var(--brand-brown)] rounded-lg p-6 shadow-md hover:shadow-xl transition-shadow duration-300;
+  }
+
+  /* Inputs */
+  .input {
+    @apply w-full px-4 py-2 border-2 border-[var(--brand-brown)] rounded focus:outline-none focus:border-[var(--brand-brown-dark)] transition-colors;
+  }
+
+  /* Sections */
+  .section {
+    @apply py-16 px-4;
+  }
+
+  .section-title {
+    @apply text-4xl font-bold text-center mb-12;
+  }
+}
+
+@layer utilities {
+  /* Animations personnalisées */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-fade-in {
+    animation: fadeIn 0.6s ease-out;
+  }
+
+  /* Gradient mystérieux pour l'ambiance escape game */
+  .mystery-gradient {
+    background: linear-gradient(
+      135deg,
+      var(--brand-brown) 0%,
+      var(--brand-brown-dark) 100%
+    );
+  }
+
+  /* Text shadow pour le titre principal */
+  .text-mystery {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  }
+}
+
+/* Scrollbar personnalisée */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--brand-cream);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--brand-brown);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--brand-brown-dark);
 }

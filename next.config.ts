@@ -5,3 +5,12 @@ const nextConfig: NextConfig = {
 };
 
 export default nextConfig;
+
+// const nextConfig = {
+//   reactStrictMode: true,
+//   images: {
+//     domains: [], // Ajoutez vos domaines d'images externes ici
+//   },
+// }
+
+// module.exports = nextConfig
