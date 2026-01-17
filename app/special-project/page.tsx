@@ -20,7 +20,7 @@ export default function SpecialProjectPage() {
           <p>
             Imaginez le thème de vos rêves, celui qui vous fait vibrer, et
             partagez-le avec moi. Je m&apos;occupe de tout le reste et je
-            conçois un escape game sur mesure qui correspondra parfaitement à
+            conçois un escape game sur mesure qui correspondra parfaitement à
             vos attentes. Une aventure unique, créée spécialement pour vous.
           </p>
           <br />

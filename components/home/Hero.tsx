@@ -13,7 +13,7 @@ export const Hero: React.FC = () => {
           inoubliables
         </p>
         <div className="flex gap-8 justify-center">
-          <ButtonLink href="/escapes">Voir nos aventures</ButtonLink>
+          <ButtonLink href="/escapes">Voir nos escapes</ButtonLink>
           <ButtonLink href="/contact">Réserver maintenant</ButtonLink>
         </div>
       </div>

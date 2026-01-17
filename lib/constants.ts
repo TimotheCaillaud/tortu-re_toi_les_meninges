@@ -65,12 +65,12 @@ export const FAQS = [
   {
     question: "Combien de temps dure une session ?",
     answer:
-      "Nos aventures durent autour d'une heure de jeu. Vous pouvez prendre votre temps, il n'y a pas de limite stricte.",
+      "Nos escapes durent autour d'une heure de jeu. Vous pouvez prendre votre temps, il n'y a pas de limite stricte.",
   },
   {
     question: "Combien de joueurs peuvent participer ?",
     answer:
-      "Selon le scénario, de 2 à 6 joueurs peuvent participer. Nous indiquons le nombre recommandé pour chaque aventure.",
+      "Selon le scénario, de 2 à 6 joueurs peuvent participer. Nous indiquons le nombre recommandé pour chaque escape.",
   },
   {
     question: "Dois-je retourner le matériel ?",
