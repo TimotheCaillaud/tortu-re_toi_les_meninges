@@ -4,7 +4,7 @@ import { Footer } from "@/components/layout/Footer";
 import "./globals.css";
 
 export const metadata = {
-  title: "Escape Home - L'aventure à domicile",
+  title: "Tortu’re toi les méninges - L'aventure à domicile",
   description:
     "Des escape games immersifs livrés à domicile pour des moments inoubliables",
 };

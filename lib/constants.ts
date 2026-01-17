@@ -1,5 +1,5 @@
 export const SITE_CONFIG = {
-  name: "Escape Home",
+  name: "Tortu&apos;re toi les méninges",
   description: "L'aventure à domicile",
   url: process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000",
   contact: {

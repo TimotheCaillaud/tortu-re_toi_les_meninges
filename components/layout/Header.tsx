@@ -25,7 +25,7 @@ export const Header: React.FC = () => {
         <div className="max-w-6xl mx-auto flex justify-center items-center">
           <div className="text-center">
             <h1 className="text-4xl md:text-5xl font-bold text-[#f7dba7] tracking-wider">
-              ESCAPE HOME
+              TORTU&apos;RE TOI LES MÉNINGES
             </h1>
             <p className="text-[#fffcf6] text-sm mt-2">
               L&apos;aventure à domicile

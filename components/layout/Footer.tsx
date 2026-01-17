@@ -7,7 +7,7 @@ export const Footer: React.FC = () => {
         <div className="grid md:grid-cols-3 gap-8 mb-8">
           <div>
             <h3 className="text-2xl font-bold text-[#fffcf6] mb-4">
-              ESCAPE HOME
+              TORTU&apos;RE TOI LES MÉNINGES
             </h3>
             <p className="text-sm">
               L&apos;aventure à domicile pour des moments inoubliables
@@ -64,7 +64,7 @@ export const Footer: React.FC = () => {
           </div>
         </div>
         <div className="border-t border-[#733706] pt-6 text-center text-sm">
-          <p>© 2024 Escape Home. Tous droits réservés.</p>
+          <p>© 2025 Tortu&apos;re toi les méninges. Tous droits réservés.</p>
         </div>
       </div>
     </footer>
