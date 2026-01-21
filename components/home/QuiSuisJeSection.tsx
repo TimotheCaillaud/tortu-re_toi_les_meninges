@@ -9,11 +9,6 @@ export const QuiSuisJeSection: React.FC = () => {
         </h2>
         <div className="gap-8">
           <p>
-            Voici une version qui mélange mystère, ton commercial et
-            l&apos;image du sablier :
-          </p>
-          <br />
-          <p>
             Je m&apos;appelle Emeraude, et depuis l&apos;enfance, les énigmes
             rythment ma vie. À mesure que les grains de mon sablier
             s&apos;écoulent, j&apos;ai découvert que créer des énigmes était
