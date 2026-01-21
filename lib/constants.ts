@@ -39,8 +39,8 @@ export const ESCAPES = [
     duration: "60 min",
     difficulty: "Intermédiaire",
     age: "10+",
-    price: 49.99,
-    image: "/image_1.png",
+    image: "/images/montagne.png",
+    hidden: false,
   },
   {
     id: 2,
@@ -51,8 +51,8 @@ export const ESCAPES = [
     duration: "60 min",
     difficulty: "Facile",
     age: "10+",
-    price: 44.99,
-    image: "/adventures/tresor.jpg",
+    image: "/images/USA.png",
+    hidden: false,
   },
 ];
 
