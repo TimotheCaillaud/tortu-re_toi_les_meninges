@@ -1,5 +1,7 @@
-import { NAV_ITEMS } from "@/lib/constants";
+import { NAV_ITEMS, SITE_CONFIG } from "@/lib/constants";
 import React from "react";
+import { Instagram } from "lucide-react";
+
 
 export const Footer: React.FC = () => {
   return (
@@ -10,9 +12,19 @@ export const Footer: React.FC = () => {
             <h3 className="text-2xl font-bold text-[#fffcf6] mb-4">
               TORTU&apos;RE TOI LES MÉNINGES
             </h3>
-            <p className="text-sm">
-              L&apos;aventure à domicile pour des moments inoubliables
-            </p>
+            <div className="flex flex-col gap-3">
+              <p className="text-sm">
+                L&apos;aventure à domicile pour des moments inoubliables
+              </p>
+              <a
+                key={SITE_CONFIG.social.instagram}
+                href={SITE_CONFIG.social.instagram}
+                className="flex items-center space-x-2 text-[#f7dba7] hover:text-[#fffcf6] transition-colors duration-300 font-medium"
+                >
+                <Instagram size={20} />
+                <span>Suivez moi sur Instagram</span>
+              </a>
+            </div>
           </div>
           <div>
             <h4 className="font-bold text-[#fffcf6] mb-4">Navigation</h4>

@@ -10,7 +10,7 @@ export const SITE_CONFIG = {
   },
   social: {
     facebook: "https://facebook.com/escapehome",
-    instagram: "https://instagram.com/escapehome",
+    instagram: "https://www.instagram.com/tortue_re_toi_les_meninges",
     twitter: "https://twitter.com/escapehome",
   },
 };
@@ -40,7 +40,7 @@ export const ESCAPES = [
     difficulty: "Intermédiaire",
     age: "10+",
     image: "/images/montagne.png",
-    hidden: false,
+    hidden: true,
   },
   {
     id: 2,

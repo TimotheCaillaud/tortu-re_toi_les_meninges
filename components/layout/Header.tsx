@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import { Menu, X } from "lucide-react";
 import { NAV_ITEMS } from "@/lib/constants";
+import Image from "next/image";
 
 export const Header: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -11,7 +12,8 @@ export const Header: React.FC = () => {
     <header className="bg-[#3f1f03] text-[#fffcf6] sticky top-0 z-50 shadow-lg">
       {/* Banner avec logo */}
       <div className="bg-[#733706] py-6 px-4">
-        <div className="max-w-6xl mx-auto flex justify-center items-center">
+        <div className="max-w-6xl mx-auto flex justify-center items-center gap-8">
+          <Image src="/images/Logo.png" alt="Logo" width={80} height={80} />
           <div className="text-center">
             <h1 className="text-4xl md:text-5xl font-bold text-[#f7dba7] tracking-wider">
               TORTU&apos;RE TOI LES MÉNINGES
