@@ -11,14 +11,14 @@ export const Header: React.FC = () => {
   return (
     <header className="bg-[#3f1f03] text-[#fffcf6] sticky top-0 z-50 shadow-lg">
       {/* Banner avec logo */}
-      <div className="bg-[#733706] py-6 px-4">
+      <div className="bg-[#843400] py-6 px-4">
         <div className="max-w-6xl mx-auto flex justify-center items-center gap-8">
-          <Image src="/images/Logo.png" alt="Logo" width={80} height={80} />
+          <Image src="/images/Logo.png" alt="Logo" width={100} height={100} />
           <div className="text-center">
             <h1 className="text-4xl md:text-5xl font-bold text-[#f7dba7] tracking-wider">
               TORTU&apos;RE TOI LES MÉNINGES
             </h1>
-            <p className="text-[#fffcf6] text-sm mt-2">
+            <p className="text-[#fffcf6] text-2xl mt-2">
               L&apos;aventure à domicile
             </p>
           </div>

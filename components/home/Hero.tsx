@@ -3,7 +3,7 @@ import { ButtonLink } from "../ui/ButtonLink";
 
 export const Hero: React.FC = () => {
   return (
-    <section className="bg-gradient-to-b from-[#733706] to-[#3f1f03] text-[#fffcf6] py-20 px-4">
+    <section className="bg-gradient-to-b from-[#843400] to-[#3f1f03] text-[#fffcf6] py-20 px-4">
       <div className="max-w-4xl mx-auto text-center">
         <h2 className="text-5xl md:text-6xl font-bold mb-6 text-[#f7dba7]">
           Vivez l&apos;aventure chez vous
