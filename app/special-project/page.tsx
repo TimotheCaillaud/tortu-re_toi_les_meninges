@@ -1,4 +1,5 @@
 "use client";
+import { ButtonLink } from "../../components/ui/ButtonLink";
 
 export default function SpecialProjectPage() {
   return (
@@ -7,7 +8,7 @@ export default function SpecialProjectPage() {
         <h2 className="text-4xl font-bold text-center text-[#3f1f03] mb-12">
           Créez une expérience inoubliable avec un Escape Game sur mesure !
         </h2>
-        <div className="gap-8">
+        <div className="gap-8 mb-12">
           <p>
             Vous avez un événement spécial à organiser ? Un EVJF, un EVJH, une
             soirée à thème, ou tout simplement un cadeau unique à offrir ?
@@ -56,6 +57,11 @@ export default function SpecialProjectPage() {
             esprits de vos invités ! Alors, n&apos;attendez plus, et plongez
             dans l&apos;aventure !
           </p>
+        </div>
+        <div className="text-center">
+          <ButtonLink href="/contact" variant="secondary">
+            Vous êtes intéréssé·e·s ? Parlons-en !
+          </ButtonLink>
         </div>
       </div>
     </section>
