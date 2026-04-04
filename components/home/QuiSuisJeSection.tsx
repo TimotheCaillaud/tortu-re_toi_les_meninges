@@ -2,7 +2,7 @@ import React from "react";
 
 export const QuiSuisJeSection: React.FC = () => {
   return (
-    <section className="py-16 px-4 bg-[#f7dba7]">
+    <section className="pb-16 px-4 bg-[#f7dba7]">
       <div className="max-w-6xl mx-auto">
         <h2 className="text-4xl font-bold text-[#3f1f03] mb-12">
           Qui suis-je ?

@@ -19,6 +19,7 @@ export const Footer: React.FC = () => {
               <a
                 key={SITE_CONFIG.social.instagram}
                 href={SITE_CONFIG.social.instagram}
+                target="_blank"
                 className="flex items-center space-x-2 text-[#f7dba7] hover:text-[#fffcf6] transition-colors duration-300 font-medium"
                 >
                 <Instagram size={20} />
