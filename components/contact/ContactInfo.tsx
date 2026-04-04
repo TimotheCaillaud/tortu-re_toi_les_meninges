@@ -1,6 +1,7 @@
 import React from "react";
 import { Card } from "@/components/ui/Card";
-import { MapPin, Phone, Mail, Clock, MapPinned } from "lucide-react";
+import { MapPin, Phone, Mail, Clock, MapPinned, Instagram } from "lucide-react";
+import { SITE_CONFIG } from "@/lib/constants";
 
 export const ContactInfo: React.FC = () => {
   return (
@@ -37,6 +38,15 @@ export const ContactInfo: React.FC = () => {
             <p>Lun-Dim: 9h-22h</p>
           </div>
         </div>
+        <a
+          key={SITE_CONFIG.social.instagram}
+          href={SITE_CONFIG.social.instagram}
+          target="_blank"
+          className="flex items-center space-x-2 hover:text-[#843400] transition-colors duration-300 font-medium"
+          >
+          <Instagram size={20} className="text-[#733706]"/>
+          <span>Suivez moi sur Instagram</span>
+        </a>
       </div>
     </Card>
   );
