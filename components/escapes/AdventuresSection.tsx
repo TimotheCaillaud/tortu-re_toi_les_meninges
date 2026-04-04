@@ -27,7 +27,7 @@ export const AdventuresSection: React.FC = () => {
                 <div className="flex-2">
                   <p>{escape.pitch}</p>
                   <p className="mt-4 font-semibold text-[#733706]">
-                    {escape.players} • {escape.duration} • {escape.age} • {DIFFICULTY_LEVEL_TO_NAME[escape.difficulty]}
+                    {escape.players} • {escape.duration} • {escape.age} • {DIFFICULTY_LEVEL_TO_NAME[escape.difficulty as keyof typeof DIFFICULTY_LEVEL_TO_NAME]}
                   </p>
                 </div>
               </div>
