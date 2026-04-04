@@ -1,6 +1,6 @@
 import React from "react";
 import { Card } from "@/components/ui/Card";
-import { ESCAPES } from "@/lib/constants";
+import { DIFFICULTY_LEVEL_TO_NAME, ESCAPES } from "@/lib/constants";
 import Image from "next/image";
 
 export const AdventuresSection: React.FC = () => {
@@ -13,7 +13,7 @@ export const AdventuresSection: React.FC = () => {
         <div className="grid md:grid-cols-2 gap-8">
           {ESCAPES.filter(escape => !escape.hidden).map((escape) => (
             <Card key={escape.id} title={escape.title}>
-              <div className="flex flex-row gap-4">
+              <div className="flex flex-row gap-4 cursor-[url('/images/OIP.jpg')]">
                 <div className="flex-1">
                   <Image
                     src={escape.image}
@@ -25,9 +25,9 @@ export const AdventuresSection: React.FC = () => {
                   />
                 </div>
                 <div className="flex-2">
-                  <p>{escape.description}</p>
+                  <p>{escape.pitch}</p>
                   <p className="mt-4 font-semibold text-[#733706]">
-                    {escape.players} • {escape.duration} • {escape.age}
+                    {escape.players} • {escape.duration} • {escape.age} • {DIFFICULTY_LEVEL_TO_NAME[escape.difficulty]}
                   </p>
                 </div>
               </div>
