@@ -33,8 +33,8 @@ export const ESCAPES = [
   {
     id: 1,
     title: "Une enquête à haute Altitude",
-    description:
-      "Missionné·es par le J.I.A., journal international d'Alpinisme, vous devez vous prononcer sur le sort de l'Everest. L'honneur d'un pays est en jeu. ",
+    pitch: "",
+    description: "Missionné·e·s par le J.I.A., journal international d'Alpinisme, vous devez vous prononcer sur le sort de l'Everest. L'honneur d'un pays est en jeu.",
     players: "4-6 joueurs",
     duration: "60 min",
     difficulty: "Intermédiaire",
@@ -45,8 +45,8 @@ export const ESCAPES = [
   {
     id: 2,
     title: "Les pierres de Lune",
-    description:
-      "USA début des années 1920. \nUn des barons de la contrebande m'a volé des pierres de Lune. Armé de votre courage, vous pénétrerez dans son bureau, afin de retrouver mes précieuses gemmes. Attention à vous si vous n'êtes pas suffisamment rapide.",
+    pitch: "",
+    description: "USA début des années 1920. \nUn des barons de la contrebande m'a volé des pierres de Lune. Armé de votre courage, vous pénétrerez dans son bureau, afin de retrouver mes précieuses gemmes. Attention à vous si vous n'êtes pas suffisamment rapide.",
     players: "4-6 joueurs",
     duration: "60 min",
     difficulty: "Facile",
@@ -54,7 +54,43 @@ export const ESCAPES = [
     image: "/images/USA.png",
     hidden: false,
   },
+   {
+    id: 3,
+    title: "Le Cube des 3 Royaumes",
+    pitch: "Un étrange paquet vient de nous parvenir. Un cube en bois. Il semble venir de loin, avec de nombreuses arabesques sur ces côtés. Votre mission : L'ouvrir le plus rapidement possible.",
+    description: "Un étrange paquet vient de nous parvenir. Un cube en bois. Il semble venir de loin, avec de nombreuses arabesques sur ces côtés. Attachée à ce dernier une lettre : En gage de notre affection, en vous remerciant pour l'aide apportée à l'équipage de l'Aventurière. Ce coffre contient un grand savoir, qui, s'il tombe entre de mauvaises mains, pourrait devenir dangereux. Pour cette raison, nous viendrons rapidement le chercher.",
+    players: "3-5 joueurs",
+    duration: "60 min",
+    difficulty: 3,
+    age: "14+",
+    image: "/images/Phare.jpeg",
+    hidden: false,
+  },
 ];
+
+/*
+ {
+    id: ,
+    title: "",
+    pitch: "",
+    description: "",
+    players: " joueurs",
+    duration: " min",
+    difficulty: "",
+    age: "",
+    image: "",
+    hidden: ,
+  },
+
+*/
+
+export const DIFFICULTY_LEVEL_TO_NAME = {
+  1 : "Carapace en carton",
+  2 : "Carapace de sable",
+  3 : "Carapace d'écume",
+  4 : "Carapace de Corail",
+  5 : "Carapace titanic",
+}
 
 export const FAQS = [
   {
