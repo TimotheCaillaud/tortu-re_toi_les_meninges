@@ -77,7 +77,7 @@ export const AdventuresSection: React.FC = () => {
               </h2>
 
               {/* You can reuse your Card content here */}
-              <p className="text-[#041f1e]">{selectedEscape.pitch}</p>
+              <p className="text-[#041f1e]">{selectedEscape.description}</p>
 
               <button
                 className="mt-6 px-4 py-2 border border-[#733706] rounded"
