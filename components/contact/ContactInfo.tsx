@@ -43,9 +43,9 @@ export const ContactInfo: React.FC = () => {
           href={SITE_CONFIG.social.instagram}
           target="_blank"
           className="flex items-center space-x-2 hover:text-[#843400] transition-colors duration-300 font-medium"
-          >
-          <Instagram size={20} className="text-[#733706]"/>
-          <span>Suivez moi sur Instagram</span>
+        >
+          <Instagram size={20} className="text-[#733706]" />
+          <span>Contactez moi sur Instagram</span>
         </a>
       </div>
     </Card>
