@@ -1,12 +1,14 @@
-export interface Adventure {
+export interface Escape {
   id: number;
   title: string;
+  pitch: string;
   description: string;
   players: string;
   duration: string;
-  difficulty: "Facile" | "Intermédiaire" | "Difficile";
-  price: number;
+  difficulty: string;
+  age: string;
   image: string;
+  hidden: boolean;
 }
 
 export interface ContactFormData {
