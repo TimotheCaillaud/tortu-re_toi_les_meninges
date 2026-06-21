@@ -1,12 +1,12 @@
 "use client";
 
 import React, { useState } from "react";
-import { Card } from "@/components/ui/Card";
-import { DIFFICULTY_LEVEL_TO_NAME } from "@/lib/constants";
+
 import { ESCAPES } from "@/lib/escapes";
-import Image from "next/image";
-import { Users, Clock, BrainCog, Cake } from "lucide-react";
 import { Escape } from "@/lib/types";
+import { EscapeCard } from "../ui/EscapeCard";
+import { EscapeCard2 } from "../ui/EscapeCard copy";
+import { EscapeDialog } from "../ui/EscapeDialog";
 
 export const AdventuresSection: React.FC = () => {
   const [selectedEscape, setSelectedEscape] = useState<Escape>();
@@ -17,53 +17,22 @@ export const AdventuresSection: React.FC = () => {
         <h2 className="text-4xl font-bold text-center text-[#3f1f03] mb-12">
           Nos Escapes
         </h2>
-        <div className="grid md:grid-cols-2 gap-8">
+        <div className="grid md:grid-cols-3 gap-8">
           {ESCAPES.filter((escape) => !escape.hidden).map((escape) => (
             <div
               key={escape.id}
               onClick={() => setSelectedEscape(escape)}
               className="hover:cursor-pointer"
             >
-              <Card key={escape.id} title={escape.title}>
-                <p className="mb-4 font-semibold text-[#733706] flex items-center gap-3 whitespace-nowrap">
-                  <span className="flex items-center gap-1">
-                    <Users size={16} /> {escape.players} joueurs
-                  </span>
-                  <span className="flex items-center gap-1">
-                    <Clock size={16} /> {escape.duration} min
-                  </span>
-                  <span className="flex items-center gap-1">
-                    <Cake size={16} /> {escape.age}
-                  </span>
-                  <span className="flex items-center gap-1">
-                    <BrainCog size={16} />
-                    {
-                      DIFFICULTY_LEVEL_TO_NAME[
-                        escape.difficulty as keyof typeof DIFFICULTY_LEVEL_TO_NAME
-                      ]
-                    }
-                  </span>
-                </p>
-                <div className="flex flex-row gap-4">
-                  <div>
-                    <Image
-                      src={escape.image}
-                      alt={escape.title}
-                      width={160}
-                      height={200}
-                      style={{ objectFit: "contain" }}
-                      className="h-full object-cover rounded-md"
-                    />
-                  </div>
-                  <div className="flex-2">
-                    <p>{escape.pitch}</p>
-                  </div>
-                </div>
-              </Card>
+              <EscapeCard2 escape={escape} />
             </div>
           ))}
         </div>
-        {selectedEscape && (
+        <EscapeDialog
+          selectedEscape={selectedEscape}
+          onClose={() => setSelectedEscape(undefined)}
+        />
+        {/* {selectedEscape && (
           <div
             className="fixed inset-0 bg-black/50 flex items-center justify-center z-50"
             onClick={() => setSelectedEscape(undefined)}
@@ -76,7 +45,6 @@ export const AdventuresSection: React.FC = () => {
                 {selectedEscape.title}
               </h2>
 
-              {/* You can reuse your Card content here */}
               <p className="text-[#041f1e]">{selectedEscape.description}</p>
 
               <button
@@ -87,7 +55,7 @@ export const AdventuresSection: React.FC = () => {
               </button>
             </div>
           </div>
-        )}
+        )} */}
       </div>
     </section>
   );

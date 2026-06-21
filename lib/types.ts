@@ -8,6 +8,7 @@ export interface Escape {
   difficulty: string;
   age: string;
   image: string;
+  images: string[];
   hidden: boolean;
 }
 

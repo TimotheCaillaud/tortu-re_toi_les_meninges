@@ -12,6 +12,7 @@ export const ESCAPES: Escape[] = [
     difficulty: "3",
     age: "10+",
     image: "/images/montagne.png",
+    images: [],
     hidden: true,
   },
   {
@@ -26,6 +27,13 @@ export const ESCAPES: Escape[] = [
     difficulty: "3",
     age: "10+",
     image: "/images/les_pierres_de_lune/couverture.png",
+    images: [
+      "/images/les_pierres_de_lune/carrousel/Mise_en_place_1.jpeg",
+      "/images/les_pierres_de_lune/carrousel/Mise_en_place_2.jpeg",
+      "/images/les_pierres_de_lune/carrousel/Mise_en_place_3.jpeg",
+      "/images/les_pierres_de_lune/carrousel/Mise_en_place_4.jpeg",
+      "/images/les_pierres_de_lune/carrousel/Mise_en_place_5.jpeg",
+    ],
     hidden: false,
   },
   {
@@ -40,6 +48,7 @@ export const ESCAPES: Escape[] = [
     difficulty: "3",
     age: "14+",
     image: "/images/Phare.jpeg",
+    images: [],
     hidden: false,
   },
 ];
