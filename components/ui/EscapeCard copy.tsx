@@ -22,7 +22,7 @@ export const EscapeCard2: React.FC<EscapeCardProps> = ({ escape }) => {
         />
       </div>
       <div className="p-3 max-h-25 group-hover:max-h-100 transition-[max-height] bg-white duration-800 absolute bottom-0 left-0 overflow-hidden">
-        <h3 className="text-3xl font-bold text-[#3f1f03] mb-4">
+        <h3 className="text-2xl font-bold text-[#3f1f03] mb-4">
           {escape.title}
         </h3>
         <p className="mb-4 font-semibold text-[#733706] flex items-center gap-3 whitespace-nowrap">

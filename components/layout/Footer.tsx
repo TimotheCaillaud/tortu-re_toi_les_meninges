@@ -2,7 +2,6 @@ import { NAV_ITEMS, SITE_CONFIG } from "@/lib/constants";
 import React from "react";
 import { Instagram } from "lucide-react";
 
-
 export const Footer: React.FC = () => {
   return (
     <footer className="bg-[#041f1e] text-[#f7dba7] py-12 px-4">
@@ -21,7 +20,7 @@ export const Footer: React.FC = () => {
                 href={SITE_CONFIG.social.instagram}
                 target="_blank"
                 className="flex items-center space-x-2 text-[#f7dba7] hover:text-[#fffcf6] transition-colors duration-300 font-medium"
-                >
+              >
                 <Instagram size={20} />
                 <span>Suivez moi sur Instagram</span>
               </a>

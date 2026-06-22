@@ -10,9 +10,9 @@ export default function FAQPage() {
   return (
     <section id="faq" className="py-16 px-4">
       <div className="max-w-4xl mx-auto h-full">
-        <h2 className="text-4xl font-bold text-center text-[#3f1f03] mb-12">
+        <h1 className="text-4xl font-bold text-center text-[#3f1f03] mb-12">
           Questions Fréquentes
-        </h2>
+        </h1>
         <div className="space-y-4">
           {FAQS.map((faq, index) => (
             <FAQItem

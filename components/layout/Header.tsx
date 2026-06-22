@@ -21,9 +21,9 @@ export const Header: React.FC = () => {
             <h1 className="text-4xl md:text-5xl font-bold text-[#f7dba7] tracking-wider">
               TORTU&apos;RE TOI LES MÉNINGES
             </h1>
-            <p className="text-[#fffcf6] text-2xl mt-2">
+            <h2 className="text-[#fffcf6] text-2xl mt-2">
               L&apos;aventure à domicile
-            </p>
+            </h2>
           </div>
         </div>
       </div>
@@ -41,7 +41,7 @@ export const Header: React.FC = () => {
                 className="flex items-center space-x-2 text-[#f7dba7] hover:text-[#fffcf6] transition-colors duration-300 font-medium"
               >
                 <Icon size={20} />
-                <span>{item.name}</span>
+                <h2>{item.name}</h2>
               </a>
             );
           })}

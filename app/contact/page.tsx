@@ -6,9 +6,9 @@ export default function ContactPage() {
   return (
     <section id="contact" className="py-16 px-4 bg-[#f7dba7]">
       <div className="max-w-4xl mx-auto">
-        <h2 className="text-4xl font-bold text-center text-[#3f1f03] mb-12">
+        <h1 className="text-4xl font-bold text-center text-[#3f1f03] mb-12">
           Contactez-moi
-        </h2>
+        </h1>
 
         <div className="grid md:grid-cols-2 gap-8 mb-12">
           <ContactInfo />

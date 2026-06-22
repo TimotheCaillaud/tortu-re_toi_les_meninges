@@ -331,9 +331,9 @@ export default function CalendarPage() {
         </h1>
 
         {escape ? (
-          <p className="text-center text-[#733706] font-semibold mb-10 text-3xl">
+          <h2 className="text-center text-[#733706] font-semibold mb-10 text-3xl">
             {escape.title}
-          </p>
+          </h2>
         ) : (
           <p className="text-center text-[#733706]/70 mb-10">
             Aucun escape sélectionné — choisissez un créneau ci-dessous.
@@ -382,7 +382,7 @@ export default function CalendarPage() {
                 : "bg-[#733706]/20 text-[#733706]/50 cursor-not-allowed"
             }`}
           >
-            Confirmer la réservation
+            Demande de réservation
           </button>
         </div>
       </div>

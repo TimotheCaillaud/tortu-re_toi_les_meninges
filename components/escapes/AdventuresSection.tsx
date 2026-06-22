@@ -14,9 +14,9 @@ export const AdventuresSection: React.FC = () => {
   return (
     <section className="py-16 px-4 bg-[#f7dba7]">
       <div className="max-w-6xl mx-auto">
-        <h2 className="text-4xl font-bold text-center text-[#3f1f03] mb-12">
+        <h1 className="text-4xl font-bold text-center text-[#3f1f03] mb-12">
           Nos Escapes
-        </h2>
+        </h1>
         <div className="grid md:grid-cols-3 gap-8">
           {ESCAPES.filter((escape) => !escape.hidden).map((escape) => (
             <div

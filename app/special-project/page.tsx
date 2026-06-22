@@ -5,7 +5,10 @@ export default function SpecialProjectPage() {
   return (
     <section id="faq" className="py-16 px-4 bg-[#f7dba7]">
       <div className="max-w-4xl mx-auto">
-        <h2 className="text-4xl font-bold text-center text-[#3f1f03] mb-12">
+        <h1 className="text-4xl font-bold text-center text-[#3f1f03]">
+          Project Spéciaux
+        </h1>
+        <h2 className="text-xl font-bold text-center text-[#3f1f03] mb-12">
           Créez une expérience inoubliable avec un Escape Game sur mesure !
         </h2>
         <div className="gap-8 mb-12">
