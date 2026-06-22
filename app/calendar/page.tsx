@@ -1,7 +1,7 @@
 // app/calendar/page.tsx
 "use client";
 
-import React, { useEffect, useMemo, useState } from "react";
+import React, { Suspense, useEffect, useMemo, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { ESCAPES } from "@/lib/escapes";
 import { getSlotsForMonth, CalendarSlot } from "@/lib/calendarSlots";
@@ -201,7 +201,7 @@ function MonthGrid({
   );
 }
 
-export default function CalendarPage() {
+function CalendarPageContent() {
   const searchParams = useSearchParams();
   const escapeId = searchParams.get("escapeId");
   const escape = ESCAPES.find((e) => String(e.id) === escapeId);
@@ -387,5 +387,21 @@ export default function CalendarPage() {
         </div>
       </div>
     </section>
+  );
+}
+
+export default function CalendarPage() {
+  return (
+    <Suspense
+      fallback={
+        <section className="py-16 px-4 bg-[#f7dba7] min-h-screen">
+          <div className="max-w-5xl mx-auto text-center text-[#733706]">
+            Chargement du calendrier...
+          </div>
+        </section>
+      }
+    >
+      <CalendarPageContent />
+    </Suspense>
   );
 }
