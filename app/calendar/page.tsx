@@ -35,13 +35,18 @@ function isPast(date: Date): boolean {
   return date < today;
 }
 
-/** Builds a 7-column grid of cells for one month, including leading/trailing
- *  blanks so the first day lines up under the correct weekday column. */
+function isWithinNextWeek(date: Date): boolean {
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+  const sevenDaysOut = new Date(today);
+  sevenDaysOut.setDate(sevenDaysOut.getDate() + 7);
+  return date >= today && date < sevenDaysOut;
+}
+
 function buildMonthGrid(year: number, month: number): (Date | null)[] {
   const firstDay = new Date(year, month, 1);
   const daysInMonth = new Date(year, month + 1, 0).getDate();
 
-  // JS getDay(): 0 = Sunday ... 6 = Saturday. We want Monday-first columns.
   const firstWeekday = (firstDay.getDay() + 6) % 7; // 0 = Monday ... 6 = Sunday
 
   const cells: (Date | null)[] = [];
@@ -142,6 +147,7 @@ function MonthGrid({
           const dateKey = toDateKey(date);
           const slots = slotsByDate.get(dateKey) ?? [];
           const past = isPast(date);
+          const isNearTerm = isWithinNextWeek(date);
 
           return (
             <div
@@ -176,14 +182,18 @@ function MonthGrid({
                         title={
                           slot.isBooked
                             ? "Déjà réservé"
-                            : `Réserver ce créneau (${slot.label})`
+                            : isNearTerm
+                              ? `Délai court, sous 7 jours (${slot.label})`
+                              : `Réserver ce créneau (${slot.label})`
                         }
                         className={`text-[8px] sm:text-[9px] leading-tight rounded px-1 py-0.5 transition-colors truncate ${
                           slot.isBooked
-                            ? "bg-gray-400/10 text-gray-500/40 cursor-not-allowed line-through"
+                            ? "bg-gray-400/80 text-[#fffcf6] cursor-not-allowed line-through"
                             : isSelected
                               ? "bg-[#843400] text-[#fffcf6] font-semibold"
-                              : "bg-green-600/15 text-green-900 hover:bg-green-600/30 cursor-pointer"
+                              : isNearTerm
+                                ? "bg-orange-500/80 text-[#fffcf6] hover:bg-orange-500/30 cursor-pointer"
+                                : "bg-green-600/80 text-[#fffcf6] hover:bg-green-600/30 cursor-pointer"
                         }`}
                       >
                         {slot.label}
@@ -329,6 +339,7 @@ function CalendarPageContent() {
   }
 
   function handleConfirm() {
+    // Placeholder — wire this up to your real booking submission later.
     if (!selectedSlot) return;
     alert(
       `Réservation : ${escape?.title ?? "Escape"} — ${selectedSlot.date}, ${selectedSlot.label} (${selectedSlot.time})`,
@@ -352,7 +363,7 @@ function CalendarPageContent() {
           </p>
         )}
 
-        <div className="relative flex flex-col md:flex-row gap-8 bg-[#fffcf6] border-2 border-[#733706] rounded-lg p-6 sm:p-8">
+        <div className="bg-[#fffcf6] border-2 border-[#733706] rounded-lg p-6 sm:p-8">
           {isLoadingSlots && (
             <div className="absolute inset-0 flex items-center justify-center bg-[#fffcf6]/70 rounded-lg z-10">
               <p className="text-[#733706] font-medium">
@@ -360,26 +371,42 @@ function CalendarPageContent() {
               </p>
             </div>
           )}
-          <MonthGrid
-            year={baseYear}
-            month={baseMonth}
-            slotsByDate={slotsByDate}
-            selectedSlot={selectedSlot}
-            onSelectSlot={handleSelectSlot}
-            onPrevious={goToPreviousMonth}
-            showPrevious={true}
-            isPrevDisabled={isAtMinMonth(baseYear, baseMonth)}
-          />
-          <MonthGrid
-            year={secondYear}
-            month={secondMonth}
-            slotsByDate={slotsByDate}
-            selectedSlot={selectedSlot}
-            onSelectSlot={handleSelectSlot}
-            onNext={goToNextMonth}
-            showPrevious={false}
-            isNextDisabled={isAtMaxMonth(baseYear, baseMonth)}
-          />
+          <div className="relative flex flex-col md:flex-row gap-8">
+            <MonthGrid
+              year={baseYear}
+              month={baseMonth}
+              slotsByDate={slotsByDate}
+              selectedSlot={selectedSlot}
+              onSelectSlot={handleSelectSlot}
+              onPrevious={goToPreviousMonth}
+              showPrevious={true}
+              isPrevDisabled={isAtMinMonth(baseYear, baseMonth)}
+            />
+            <MonthGrid
+              year={secondYear}
+              month={secondMonth}
+              slotsByDate={slotsByDate}
+              selectedSlot={selectedSlot}
+              onSelectSlot={handleSelectSlot}
+              onNext={goToNextMonth}
+              showPrevious={false}
+              isNextDisabled={isAtMaxMonth(baseYear, baseMonth)}
+            />
+          </div>
+          <div className="flex flex-wrap justify-center gap-x-6 gap-y-2 mt-4 text-sm">
+            <div className="flex items-center gap-2">
+              <span className="w-3 h-3 rounded-full bg-green-600/80 shrink-0" />
+              <span className="text-[#3f1f03]">Disponible</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="w-3 h-3 rounded-full bg-orange-500/80 shrink-0" />
+              <span className="text-[#3f1f03]">Délai court</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="w-3 h-3 rounded-full bg-gray-400/80 shrink-0" />
+              <span className="text-[#3f1f03]">Déjà réservé</span>
+            </div>
+          </div>
         </div>
 
         <div className="flex flex-col items-center gap-4 mt-8">
