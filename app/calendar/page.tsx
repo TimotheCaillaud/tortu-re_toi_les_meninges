@@ -1,10 +1,9 @@
-// app/calendar/page.tsx
 "use client";
 
 import React, { Suspense, useEffect, useMemo, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { ESCAPES } from "@/lib/escapes";
-import { getSlotsForMonth, CalendarSlot } from "@/lib/calendarSlots";
+import type { CalendarSlot } from "@/lib/calendarSlots";
 import { fetchAndRegisterSchoolHolidays } from "@/lib/frenchHolidays";
 
 const WEEKDAY_LABELS = ["Lun", "Mar", "Mer", "Jeu", "Ven", "Sam", "Dim"];
@@ -217,64 +216,78 @@ function CalendarPageContent() {
     time: string;
   } | null>(null);
 
-  // Bumped after fetchAndRegisterSchoolHolidays() resolves, purely to force
-  // slotsByDate to recompute below — the actual fetched data lives in
-  // frenchHolidays.ts's module-level cache, not in this counter's value.
   const [holidaysVersion, setHolidaysVersion] = useState(0);
 
   useEffect(() => {
-    // French school years run September -> August, so if "today" falls in
-    // Jan-Aug, the current school year actually started the PREVIOUS
-    // calendar year (e.g. January 2027 is still the 2026-2027 school year).
     const schoolYearStart =
       today.getMonth() >= 8 ? today.getFullYear() : today.getFullYear() - 1;
 
-    // Pulls live Zone C school holiday dates from the Ministry of Education
-    // API and merges them into the same cache the static fallback dates use.
-    // If this fails or returns nothing, the static dates in frenchHolidays.ts
-    // are still in effect — see that file's comments for details.
     fetchAndRegisterSchoolHolidays(schoolYearStart).then((count) => {
       if (count > 0) setHolidaysVersion((v) => v + 1);
     });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  // Second month shown alongside the first, handling year rollover.
   const secondMonth = (baseMonth + 1) % 12;
   const secondYear = baseMonth === 11 ? baseYear + 1 : baseYear;
 
-  const slotsByDate = useMemo(() => {
-    const map = new Map<string, CalendarSlot[]>();
-    const monthsToLoad = [
-      { year: baseYear, month: baseMonth },
-      { year: secondYear, month: secondMonth },
-    ];
+  const [slotsByDate, setSlotsByDate] = useState<Map<string, CalendarSlot[]>>(
+    new Map(),
+  );
+  const [isLoadingSlots, setIsLoadingSlots] = useState(true);
 
-    for (const { year, month } of monthsToLoad) {
-      const slots = getSlotsForMonth(year, month, escapeId ?? "");
-      for (const slot of slots) {
-        const existing = map.get(slot.date) ?? [];
-        existing.push(slot);
-        map.set(slot.date, existing);
+  useEffect(() => {
+    let isCancelled = false;
+
+    async function loadSlots() {
+      setIsLoadingSlots(true);
+      const monthsToLoad = [
+        { year: baseYear, month: baseMonth },
+        { year: secondYear, month: secondMonth },
+      ];
+
+      try {
+        const results = await Promise.all(
+          monthsToLoad.map(({ year, month }) =>
+            fetch(
+              `/api/calendar-slots?year=${year}&month=${month}&escapeId=${
+                escapeId ?? ""
+              }`,
+            ).then((res) => {
+              if (!res.ok) throw new Error(`API returned ${res.status}`);
+              return res.json() as Promise<{ slots: CalendarSlot[] }>;
+            }),
+          ),
+        );
+
+        if (isCancelled) return;
+
+        const map = new Map<string, CalendarSlot[]>();
+        for (const { slots } of results) {
+          for (const slot of slots) {
+            const existing = map.get(slot.date) ?? [];
+            existing.push(slot);
+            map.set(slot.date, existing);
+          }
+        }
+        setSlotsByDate(map);
+      } catch (err) {
+        console.error("Failed to load calendar slots:", err);
+        if (!isCancelled) setSlotsByDate(new Map());
+      } finally {
+        if (!isCancelled) setIsLoadingSlots(false);
       }
     }
 
-    return map;
-    // holidaysVersion is intentionally included even though it's not read
-    // directly here — it's a signal that frenchHolidays.ts's internal cache
-    // changed, which getSlotsForMonth() depends on indirectly.
+    loadSlots();
+    return () => {
+      isCancelled = true;
+    };
   }, [baseYear, baseMonth, secondYear, secondMonth, escapeId, holidaysVersion]);
 
-  // Navigation bounds: can't go earlier than the current month, and can't
-  // go later than the point where the SECOND visible month would exceed
-  // August 2027 (end of the 2026-2027 school year — the latest year we
-  // have any school-holiday data for). Since the view always shows
-  // baseMonth + the following month, baseMonth itself is capped at July
-  // 2027 so the second month never passes August 2027.
   const minYear = today.getFullYear();
   const minMonth = today.getMonth();
-  const maxYear = 2027;
   const maxMonth = 6; // July (0-indexed) — second month shown will be August 2027
+  const maxYear = minMonth > 9 ? minYear + 2 : minYear + 1;
 
   function isAtMinMonth(year: number, month: number): boolean {
     return year === minYear && month === minMonth;
@@ -316,7 +329,6 @@ function CalendarPageContent() {
   }
 
   function handleConfirm() {
-    // Placeholder — wire this up to your real booking submission later.
     if (!selectedSlot) return;
     alert(
       `Réservation : ${escape?.title ?? "Escape"} — ${selectedSlot.date}, ${selectedSlot.label} (${selectedSlot.time})`,
@@ -340,7 +352,14 @@ function CalendarPageContent() {
           </p>
         )}
 
-        <div className="flex flex-col md:flex-row gap-8 bg-[#fffcf6] border-2 border-[#733706] rounded-lg p-6 sm:p-8">
+        <div className="relative flex flex-col md:flex-row gap-8 bg-[#fffcf6] border-2 border-[#733706] rounded-lg p-6 sm:p-8">
+          {isLoadingSlots && (
+            <div className="absolute inset-0 flex items-center justify-center bg-[#fffcf6]/70 rounded-lg z-10">
+              <p className="text-[#733706] font-medium">
+                Chargement des disponibilités...
+              </p>
+            </div>
+          )}
           <MonthGrid
             year={baseYear}
             month={baseMonth}

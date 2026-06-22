@@ -1,5 +1,3 @@
-// lib/calendarSlots.ts
-
 import { isTwoSlotDay } from "./frenchHolidays";
 
 export type SlotPeriod = "soir" | "matin" | "apres-midi";
@@ -10,8 +8,6 @@ export const PERIOD_LABELS: Record<SlotPeriod, string> = {
   soir: "Soir",
 };
 
-// Actual start time per period — kept for booking records / future use,
-// even though the UI now only displays the period name.
 const PERIOD_TIMES: Record<SlotPeriod, string> = {
   matin: "10h00",
   "apres-midi": "15h00",
@@ -33,11 +29,6 @@ function toDateKey(date: Date): string {
   return `${y}-${m}-${d}`;
 }
 
-/**
- * Returns the slot definitions for a single day, based on whether it's
- * a weekday (1 slot, evening) or a weekend/holiday (2 slots: morning + afternoon/evening).
- * Does NOT include booking status — that's merged in separately from mock/real data.
- */
 export function getSlotTemplateForDate(
   date: Date,
 ): Omit<CalendarSlot, "isBooked">[] {
@@ -55,32 +46,42 @@ export function getSlotTemplateForDate(
   }));
 }
 
-const MOCK_BOOKED_SLOTS = new Set<string>([
-  // A few illustrative fake bookings — remove once real data is wired up.
-  "2026-06-24:soir",
-  "2026-06-27:matin",
-  "2026-07-04:apres-midi",
-]);
+async function getBusyDatesForMonth(
+  year: number,
+  month: number,
+): Promise<Set<string>> {
+  const monthStart = new Date(year, month, 1);
+  const monthEnd = new Date(year, month + 1, 0, 23, 59, 59);
 
-export function getBookedSlots(_escapeId: string): Set<string> {
-  return MOCK_BOOKED_SLOTS;
+  try {
+    const { getBusyDatesFromGoogleCalendar } = await import("./googleCalendar");
+    return await getBusyDatesFromGoogleCalendar(monthStart, monthEnd);
+  } catch (err) {
+    console.error(
+      "[calendarSlots] Failed to fetch Google Calendar availability — treating month as fully open.",
+      err,
+    );
+    return new Set<string>();
+  }
 }
 
-export function getSlotsForMonth(
+export async function getSlotsForMonth(
   year: number,
-  month: number, // 0-indexed, like JS Date
+  month: number,
   escapeId: string,
-): CalendarSlot[] {
-  const bookedSlots = getBookedSlots(escapeId);
+): Promise<CalendarSlot[]> {
+  const busyDates = await getBusyDatesForMonth(year, month);
   const daysInMonth = new Date(year, month + 1, 0).getDate();
   const slots: CalendarSlot[] = [];
 
   for (let day = 1; day <= daysInMonth; day++) {
     const date = new Date(year, month, day);
+    const dateKey = toDateKey(date);
+    const isDayBusy = busyDates.has(dateKey);
     const template = getSlotTemplateForDate(date);
+
     for (const slot of template) {
-      const key = `${slot.date}:${slot.period}`;
-      slots.push({ ...slot, isBooked: bookedSlots.has(key) });
+      slots.push({ ...slot, isBooked: isDayBusy });
     }
   }
 
