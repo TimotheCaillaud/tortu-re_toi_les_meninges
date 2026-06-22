@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+import plugin from "tailwindcss/plugin";
 
 const config: Config = {
   content: [
@@ -19,10 +20,33 @@ const config: Config = {
       },
       fontFamily: {
         sans: ["Inter", "system-ui", "sans-serif"],
+        rubik: ["var(--font-rubik-mono-one)", "monospace"],
+        syne: ["var(--font-syne)", "sans-serif"],
+        dmsans: ["var(--font-dm-sans)", "sans-serif"],
       },
     },
   },
-  plugins: [],
+  plugins: [
+    plugin(function ({ addBase, theme }) {
+      addBase({
+        body: {
+          fontFamily: theme("fontFamily.dmsans"),
+        },
+        h1: {
+          fontFamily: theme("fontFamily.rubik"),
+        },
+        h2: {
+          fontFamily: theme("fontFamily.syne"),
+        },
+        h3: {
+          fontFamily: theme("fontFamily.syne"),
+        },
+        h4: {
+          fontFamily: theme("fontFamily.syne"),
+        },
+      });
+    }),
+  ],
 };
 
 export default config;

@@ -8,21 +8,34 @@
   --brand-teal: #041f1e;
 }
 
+@theme {
+  --font-rubik: "Rubik Mono One", monospace;
+  --font-syne: "Syne", sans-serif;
+  --font-dmsans: "DM Sans", sans-serif;
+}
+
 @layer base {
   body {
-    @apply bg-[var(--brand-cream)] text-[var(--brand-teal)];
+    @apply bg-[var(--brand-cream)] text-[var(--brand-teal)] font-dmsans;
     font-feature-settings:
       "rlig" 1,
       "calt" 1;
   }
 
-  h1,
+  h1 {
+    @apply font-rubik font-bold;
+  }
+
   h2,
   h3,
-  h4,
+  h4 {
+    @apply font-syne font-bold;
+  }
+
   h5,
   h6 {
     @apply font-bold;
+    /* font-family intentionally omitted — inherits DM Sans from body */
   }
 
   /* Smooth scroll */
