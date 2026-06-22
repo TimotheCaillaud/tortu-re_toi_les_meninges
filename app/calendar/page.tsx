@@ -339,7 +339,6 @@ function CalendarPageContent() {
   }
 
   function handleConfirm() {
-    // Placeholder — wire this up to your real booking submission later.
     if (!selectedSlot) return;
     alert(
       `Réservation : ${escape?.title ?? "Escape"} — ${selectedSlot.date}, ${selectedSlot.label} (${selectedSlot.time})`,
